@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Param,
   UseGuards,
   UseInterceptors,
   ClassSerializerInterceptor,
@@ -35,8 +36,8 @@ export class UserController {
     });
   }
 
-  @Get('id')
-  async get(@Params('id') id: number) {
+  @Get(':id')
+  async get(@Param('id') id: number) {
     return this.userService.findOne({ id });
   }
 }
