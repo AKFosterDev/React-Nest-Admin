@@ -3,7 +3,7 @@ import { PermissionService } from './permission.service';
 
 @Controller('permission')
 export class PermissionController {
-  constructor(private permissionService: PermissionService);
+  constructor(private permissionService: PermissionService) {}
 
   @Get()
   async all() {
