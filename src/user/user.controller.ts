@@ -9,6 +9,7 @@ import {
   ClassSerializerInterceptor,
   Put,
   Delete,
+  Query,
 } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { UserService } from './user.service';
@@ -24,8 +25,8 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  async all(): Promise<User[]> {
-    return this.userService.all();
+  async all(@Query('page') page: number = 1): Promise<User[]> {
+    return this.userService.paginate(page);
   }
 
   @Post()
