@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { PermissionService } from './permission.service';
 
-@Controller('permission')
+@Controller('permissions')
 export class PermissionController {
   constructor(private permissionService: PermissionService) {}
 
