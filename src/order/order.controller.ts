@@ -36,24 +36,24 @@ export class OrderController {
 
     const json = [];
 
-    orders.forEach((order: Order) => {
+    orders.forEach((o: Order) => {
       json.push({
-        ID: order.id,
-        Name: order.name,
-        Email: order.email,
+        ID: o.id,
+        Name: o.name,
+        Email: o.email,
         'Product Title': '',
         Price: '',
         Quantity: '',
       });
 
-      order.order_items.forEach((item: OrderItem) => {
+      o.order_items.forEach((i: OrderItem) => {
         json.push({
           ID: '',
           Name: '',
           Email: '',
-          'Product Title': item.product_title,
-          Price: item.price,
-          Quantity: item.quantity,
+          'Product Title': i.product_title,
+          Price: i.price,
+          Quantity: i.quantity,
         });
       });
     });
@@ -63,5 +63,10 @@ export class OrderController {
     res.header('Content-Type', 'text/csv');
     res.attachment('orders.csv');
     return res.send(csv);
+  }
+
+  @Get('chart')
+  async chart() {
+    return this.orderService.chart();
   }
 }
